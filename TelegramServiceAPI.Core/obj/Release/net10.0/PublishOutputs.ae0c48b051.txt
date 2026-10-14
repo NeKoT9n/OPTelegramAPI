@@ -1,0 +1,9 @@
+D:\Test\TelegramServiceAPI\publish\TelegramServiceAPI.Core.dll
+D:\Test\TelegramServiceAPI\publish\TelegramServiceAPI.Core.deps.json
+D:\Test\TelegramServiceAPI\publish\TelegramServiceAPI.Core.pdb
+D:\Test\TelegramServiceAPI\publish\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Test\TelegramServiceAPI\publish\Microsoft.Extensions.Options.dll
+D:\Test\TelegramServiceAPI\publish\Microsoft.Extensions.Primitives.dll
+D:\Test\TelegramServiceAPI\publish\Telegram.Bot.dll
+D:\Test\TelegramServiceAPI\publish\TelegramServiceAPI.Model.dll
+D:\Test\TelegramServiceAPI\publish\TelegramServiceAPI.Model.pdb

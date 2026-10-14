@@ -1,0 +1,5 @@
+2026-10-13 17:36:28.804 +03:00 [INF] Запуск Telegram Service API...
+2026-10-13 17:36:30.061 +03:00 [INF] No validators found in the system!
+2026-10-13 17:36:30.163 +03:00 [INF] Registered 1 endpoints in 625 milliseconds.
+2026-10-13 17:36:41.568 +03:00 [INF] Получен запрос на отправку файла: Plonq_OP_v.01_v.12.63.zip
+2026-10-13 17:36:45.330 +03:00 [INF] Файл Plonq_OP_v.01_v.12.63.zip успешно отправлен в Telegram.

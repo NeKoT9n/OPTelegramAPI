@@ -1,0 +1,3 @@
+D:\Test\TelegramServiceAPI\publish\TelegramServiceAPI.Model.dll
+D:\Test\TelegramServiceAPI\publish\TelegramServiceAPI.Model.deps.json
+D:\Test\TelegramServiceAPI\publish\TelegramServiceAPI.Model.pdb

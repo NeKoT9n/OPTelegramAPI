@@ -1,0 +1,11 @@
+D:\Test\TelegramServiceAPI\TelegramServiceAPI.Model\bin\Release\net10.0\TelegramServiceAPI.Model.deps.json
+D:\Test\TelegramServiceAPI\TelegramServiceAPI.Model\bin\Release\net10.0\TelegramServiceAPI.Model.dll
+D:\Test\TelegramServiceAPI\TelegramServiceAPI.Model\bin\Release\net10.0\TelegramServiceAPI.Model.pdb
+D:\Test\TelegramServiceAPI\TelegramServiceAPI.Model\obj\Release\net10.0\TelegramServiceAPI.Model.GeneratedMSBuildEditorConfig.editorconfig
+D:\Test\TelegramServiceAPI\TelegramServiceAPI.Model\obj\Release\net10.0\TelegramServiceAPI.Model.AssemblyInfoInputs.cache
+D:\Test\TelegramServiceAPI\TelegramServiceAPI.Model\obj\Release\net10.0\TelegramServiceAPI.Model.AssemblyInfo.cs
+D:\Test\TelegramServiceAPI\TelegramServiceAPI.Model\obj\Release\net10.0\TelegramServiceAPI.Model.csproj.CoreCompileInputs.cache
+D:\Test\TelegramServiceAPI\TelegramServiceAPI.Model\obj\Release\net10.0\TelegramServiceAPI.Model.dll
+D:\Test\TelegramServiceAPI\TelegramServiceAPI.Model\obj\Release\net10.0\refint\TelegramServiceAPI.Model.dll
+D:\Test\TelegramServiceAPI\TelegramServiceAPI.Model\obj\Release\net10.0\TelegramServiceAPI.Model.pdb
+D:\Test\TelegramServiceAPI\TelegramServiceAPI.Model\obj\Release\net10.0\ref\TelegramServiceAPI.Model.dll

@@ -1,0 +1,25 @@
+[
+  {
+    "ContainingType": "FastEndpoints.EndpointRouteMapper\u002B\u003C\u003Ec",
+    "Method": "\u003CMap\u003Eb__0_1",
+    "RelativePath": "api/telegram/send",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "SendFileRequest",
+        "Type": "TelegramServiceAPI.DTO.Requests.SendFileRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      }
+    ],
+    "EndpointName": "TelegramServiceAPIEndpointsSendFileEndpoint"
+  }
+]
