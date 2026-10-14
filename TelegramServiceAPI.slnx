@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="TelegramServiceAPI.Core/TelegramServiceAPI.Core.csproj" />
+  <Project Path="TelegramServiceAPI.Infrastructure/TelegramServiceAPI.Infrastructure.csproj" Id="4a9e5b98-2571-49b6-b775-ba5ff20833a7" />
   <Project Path="TelegramServiceAPI.Model/TelegramServiceAPI.Model.csproj" />
   <Project Path="TelegramServiceAPI/TelegramServiceAPI.csproj" />
 </Solution>

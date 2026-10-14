@@ -21,5 +21,28 @@
       }
     ],
     "EndpointName": "TelegramServiceAPIEndpointsSendFileEndpoint"
+  },
+  {
+    "ContainingType": "FastEndpoints.EndpointRouteMapper\u002B\u003C\u003Ec",
+    "Method": "\u003CMap\u003Eb__0_1",
+    "RelativePath": "api/telegram/send-message",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "SendMessageRequest",
+        "Type": "TelegramServiceAPI.DTO.Requests.SendMessageRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      }
+    ],
+    "EndpointName": "TelegramServiceAPIEndpointsSendMessageEndpoint"
   }
 ]

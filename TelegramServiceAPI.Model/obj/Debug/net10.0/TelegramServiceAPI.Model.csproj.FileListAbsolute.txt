@@ -10,3 +10,16 @@ D:\Test\TelegramServiceAPI\TelegramServiceAPI.Model\obj\Debug\net10.0\refint\Tel
 D:\Test\TelegramServiceAPI\TelegramServiceAPI.Model\obj\Debug\net10.0\TelegramServiceAPI.Model.pdb
 D:\Test\TelegramServiceAPI\TelegramServiceAPI.Model\obj\Debug\net10.0\ref\TelegramServiceAPI.Model.dll
 D:\Test\TelegramServiceAPI\TelegramServiceAPI.Model\obj\Debug\net10.0\Telegram.421A3450.Up2Date
+D:\OPTelegramAPI\TelegramServiceAPI.Model\bin\Debug\net10.0\TelegramServiceAPI.Model.deps.json
+D:\OPTelegramAPI\TelegramServiceAPI.Model\bin\Debug\net10.0\TelegramServiceAPI.Model.dll
+D:\OPTelegramAPI\TelegramServiceAPI.Model\bin\Debug\net10.0\TelegramServiceAPI.Model.pdb
+D:\OPTelegramAPI\TelegramServiceAPI.Model\obj\Debug\net10.0\TelegramServiceAPI.Model.GeneratedMSBuildEditorConfig.editorconfig
+D:\OPTelegramAPI\TelegramServiceAPI.Model\obj\Debug\net10.0\TelegramServiceAPI.Model.AssemblyInfoInputs.cache
+D:\OPTelegramAPI\TelegramServiceAPI.Model\obj\Debug\net10.0\TelegramServiceAPI.Model.AssemblyInfo.cs
+D:\OPTelegramAPI\TelegramServiceAPI.Model\obj\Debug\net10.0\TelegramServiceAPI.Model.csproj.CoreCompileInputs.cache
+D:\OPTelegramAPI\TelegramServiceAPI.Model\obj\Debug\net10.0\TelegramServiceAPI.Model.sourcelink.json
+D:\OPTelegramAPI\TelegramServiceAPI.Model\obj\Debug\net10.0\TelegramServiceAPI.Model.dll
+D:\OPTelegramAPI\TelegramServiceAPI.Model\obj\Debug\net10.0\refint\TelegramServiceAPI.Model.dll
+D:\OPTelegramAPI\TelegramServiceAPI.Model\obj\Debug\net10.0\TelegramServiceAPI.Model.pdb
+D:\OPTelegramAPI\TelegramServiceAPI.Model\obj\Debug\net10.0\ref\TelegramServiceAPI.Model.dll
+D:\OPTelegramAPI\TelegramServiceAPI.Model\obj\Debug\net10.0\TelegramServiceAPI.Model.csproj.AssemblyReference.cache

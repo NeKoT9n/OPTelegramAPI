@@ -33,6 +33,34 @@
           }
         }
       }
+    },
+    "/api/telegram/send-message": {
+      "post": {
+        "tags": [
+          "Api"
+        ],
+        "summary": "Принимает текст и отправляет его в Telegram",
+        "description": "Если указан порт, сообщение уйдет сотрудникам, подписанным на этот порт через бота.",
+        "operationId": "TelegramServiceAPIEndpointsSendMessageEndpoint",
+        "requestBody": {
+          "x-name": "SendMessageRequest",
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TelegramServiceAPIDTORequestsSendMessageRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -44,6 +72,19 @@
           "File": {
             "type": "string",
             "format": "binary"
+          },
+          "Description": {
+            "type": "string"
+          }
+        }
+      },
+      "TelegramServiceAPIDTORequestsSendMessageRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Port": {
+            "type": "integer",
+            "format": "int32"
           },
           "Description": {
             "type": "string"

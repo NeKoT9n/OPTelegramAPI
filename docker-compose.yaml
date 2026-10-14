@@ -1,0 +1,31 @@
+services:
+  telegram-api:
+    build:
+      context: .
+      dockerfile: TelegramServiceAPI/Dockerfile
+    container_name: telegram-api
+    ports:
+      - "2222:8080" 
+    environment:
+      - ConnectionStrings__TelegramDbContext=Host=telegram-db;Database=telegram_db;Username=postgres;Password=postgres
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - telegram-db
+    networks:
+      - default
+
+  telegram-db:
+    image: postgres:16-alpine
+    container_name: telegram-db
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=telegram_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - telegram_db_data:/var/lib/postgresql/data
+
+volumes:
+  telegram_db_data:

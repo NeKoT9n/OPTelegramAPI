@@ -1,21 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Test\\TelegramServiceAPI\\TelegramServiceAPI.Model\\TelegramServiceAPI.Model.csproj": {}
+    "D:\\OPTelegramAPI\\TelegramServiceAPI.Model\\TelegramServiceAPI.Model.csproj": {}
   },
   "projects": {
-    "D:\\Test\\TelegramServiceAPI\\TelegramServiceAPI.Model\\TelegramServiceAPI.Model.csproj": {
+    "D:\\OPTelegramAPI\\TelegramServiceAPI.Model\\TelegramServiceAPI.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Test\\TelegramServiceAPI\\TelegramServiceAPI.Model\\TelegramServiceAPI.Model.csproj",
+        "projectUniqueName": "D:\\OPTelegramAPI\\TelegramServiceAPI.Model\\TelegramServiceAPI.Model.csproj",
         "projectName": "TelegramServiceAPI.Model",
-        "projectPath": "D:\\Test\\TelegramServiceAPI\\TelegramServiceAPI.Model\\TelegramServiceAPI.Model.csproj",
+        "projectPath": "D:\\OPTelegramAPI\\TelegramServiceAPI.Model\\TelegramServiceAPI.Model.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\Test\\TelegramServiceAPI\\TelegramServiceAPI.Model\\obj\\",
+        "outputPath": "D:\\OPTelegramAPI\\TelegramServiceAPI.Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -52,6 +52,12 @@
         "net10.0": {
           "framework": "net10.0",
           "targetAlias": "net10.0",
+          "dependencies": {
+            "Telegram.Bot": {
+              "target": "Package",
+              "version": "[22.10.3.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
