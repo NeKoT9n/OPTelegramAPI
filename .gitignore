@@ -1,0 +1,51 @@
+# Visual Studio directories and files
+.vs/
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa]rtifacts/
+[Pp]ublish/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.opensdf
+*.sdf
+
+# NuGet packages and folders
+[Pp]ackages/
+*.nupkg
+*.snupkg
+
+# Build results & logs
+*.log
+logs/
+publish/
+*.csproj.user
+
+# ASP.NET Core local secrets and environment
+secrets.json
+*.local.json
+.env
+
+# Editors & IDEs (VS Code, JetBrains Rider)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.sln.iml
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
