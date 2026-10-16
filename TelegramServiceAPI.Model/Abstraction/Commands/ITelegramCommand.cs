@@ -1,6 +1,6 @@
 ﻿using Telegram.Bot.Types;
 
-namespace TelegramServiceAPI.Model.Abstraction;
+namespace TelegramServiceAPI.Model.Abstraction.Commands;
 
 public interface ITelegramCommand
 {

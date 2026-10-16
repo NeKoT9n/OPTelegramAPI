@@ -2,12 +2,13 @@
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using TelegramServiceAPI.Core.Commands.Attributes;
-using TelegramServiceAPI.Model.Abstraction;
+using TelegramServiceAPI.Core.Services.Factory;
+using TelegramServiceAPI.Model.Abstraction.Commands;
 
-namespace TelegramServiceAPI.Core.Services.Commands;
+namespace TelegramServiceAPI.Core.Commands;
 
 [TelegramRoute("/start", "/menu")]
-public class MainMenuCommand(ITelegramBotClient botClient) : ITelegramCommand
+public class MainMenuCommand(ITelegramBotClient botClient) : IPrivateChatCommand
 {
     public async Task ExecuteAsync(Message? message, CallbackQuery? callbackQuery, CancellationToken cancellationToken)
     {

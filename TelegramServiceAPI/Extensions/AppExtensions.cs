@@ -4,15 +4,14 @@ using Microsoft.Extensions.Options;
 using Serilog;
 using Telegram.Bot;
 using TelegramServiceAPI.Core.Commands;
+using TelegramServiceAPI.Core.Options;
 using TelegramServiceAPI.Core.Services;
-using TelegramServiceAPI.Core.Services.Commands;
 using TelegramServiceAPI.Core.Services.Factory;
 using TelegramServiceAPI.Core.Services.Handlers;
 using TelegramServiceAPI.Core.Services.Handlers.GroupChatHandlers;
 using TelegramServiceAPI.Infrastructure;
 using TelegramServiceAPI.Model.Abstraction;
 using TelegramServiceAPI.Model.Abstraction.Handlers;
-using TelegramServiceAPI.Options;
 using TelegramServiceAPI.Services;
 
 namespace TelegramServiceAPI.Extensions;
@@ -39,7 +38,6 @@ public static class AppExtensions
         services.AddHostedService<TelegramListenerBackgroundService>();
 
         services.AddScoped<ITelegramFileSenderService, TelegramFileSenderService>();
-        services.AddScoped<ITelegramPrivateChatService, TelegramPrivateChatService>();
         services.AddScoped<ITelegramMessageReSenderService, TelegramMessageReSenderService>();
 
         AddTelegramBotCommands(services);
@@ -64,6 +62,7 @@ public static class AppExtensions
         services.AddTransient<ConnectPortCommand>();
         services.AddTransient<DisconnectMenuCommand>();
         services.AddTransient<DisconnectPortCommand>();
+        services.AddTransient<TestCommand>();
 
         services.AddSingleton<TelegramCommandFactory>();
 

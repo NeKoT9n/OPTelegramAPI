@@ -1,31 +1,28 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Telegram.Bot.Types;
+using TelegramServiceAPI.Core.Commands;
+using TelegramServiceAPI.Core.Options;
 using TelegramServiceAPI.Model.Abstraction;
-using TelegramServiceAPI.Model.Abstraction.Handlers;
-using TelegramServiceAPI.Options;
+using TelegramServiceAPI.Model.Abstraction.Commands;
 
 namespace TelegramServiceAPI.Core.Services.Handlers.GroupChatHandlers;
 
 public class CommitChatHandler(
     IOptions<TelegramSettings> options,
     ITelegramMessageReSenderService reSenderService,
-    ILogger<CommitChatHandler> logger) : IGroupChatHandler
+    ILogger<CommitChatHandler> logger,
+    TelegramCommandExecutor commandExecutor) : BaseChatHandler<ICommitChatCommand>(commandExecutor)
 {
     private readonly TelegramSettings _settings = options.Value;
 
-    public string TargetChatId => _settings.ChatId;
+    public override string TargetChatId => _settings.ChatId;
 
-    public async Task HandleGroupMessageAsync(Message message, CancellationToken cancellationToken)
+    public override async Task HandleChatMessageAsync(Update update, CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(message.Text)) return;
-
-        if (message.Text.StartsWith('/'))
+        if (update.Message != null)
         {
-            logger.LogInformation("Получена команда в чате коммитов: {Text}", message.Text);
-            return;
+            await reSenderService.HandleIncomingMessageAsync(update.Message, cancellationToken);
         }
-
-        await reSenderService.HandleIncomingMessageAsync(message, cancellationToken);
     }
 }

@@ -4,11 +4,10 @@ using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using TelegramServiceAPI.Core.Commands.Attributes;
-using TelegramServiceAPI.Core.Services;
 using TelegramServiceAPI.Core.Services.Factory;
 using TelegramServiceAPI.Infrastructure;
 using TelegramServiceAPI.Infrastructure.Entities;
-using TelegramServiceAPI.Model.Abstraction;
+using TelegramServiceAPI.Model.Abstraction.Commands;
 
 namespace TelegramServiceAPI.Core.Commands;
 
@@ -16,7 +15,7 @@ namespace TelegramServiceAPI.Core.Commands;
 public class ConnectPortCommand(
     ITelegramBotClient botClient,
     TelegramDbContext dbContext,
-    ILogger<ConnectPortCommand> logger) : RoutableCommand
+    ILogger<ConnectPortCommand> logger) : RoutableCommand, IPrivateChatCommand
 {
     public override async Task ExecuteAsync(Message? message, CallbackQuery? callbackQuery, CancellationToken cancellationToken)
     {

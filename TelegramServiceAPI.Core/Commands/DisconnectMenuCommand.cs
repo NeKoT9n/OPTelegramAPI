@@ -3,16 +3,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using TelegramServiceAPI.Core.Commands.Attributes;
-using TelegramServiceAPI.Core.Services;
+using TelegramServiceAPI.Core.Services.Factory;
 using TelegramServiceAPI.Infrastructure;
-using TelegramServiceAPI.Model.Abstraction;
+using TelegramServiceAPI.Model.Abstraction.Commands;
 
 namespace TelegramServiceAPI.Core.Commands;
 
 [TelegramRoute("/disconnect")]
 public class DisconnectMenuCommand(
     ITelegramBotClient botClient,
-    TelegramDbContext dbContext) : ITelegramCommand
+    TelegramDbContext dbContext) : IPrivateChatCommand
 {
 
     public async Task ExecuteAsync(Message? message, CallbackQuery? callbackQuery, CancellationToken cancellationToken)

@@ -5,9 +5,9 @@ using Microsoft.Extensions.Options;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
+using TelegramServiceAPI.Core.Options;
 using TelegramServiceAPI.Infrastructure;
 using TelegramServiceAPI.Model.Abstraction;
-using TelegramServiceAPI.Options;
 
 namespace TelegramServiceAPI.Core.Services;
 

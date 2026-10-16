@@ -1,4 +1,4 @@
-﻿namespace TelegramServiceAPI.Options;
+﻿namespace TelegramServiceAPI.Core.Options;
 
 public class TelegramSettings
 {

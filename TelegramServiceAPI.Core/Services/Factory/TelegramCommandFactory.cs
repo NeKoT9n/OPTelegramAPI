@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Text.RegularExpressions;
 using TelegramServiceAPI.Core.Commands.Attributes;
-using TelegramServiceAPI.Model.Abstraction;
+using TelegramServiceAPI.Model.Abstraction.Commands;
 
 namespace TelegramServiceAPI.Core.Services.Factory;
 
@@ -12,7 +12,7 @@ public class TelegramCommandFactory
     private readonly List<(Regex RegexPattern, Type CommandType)> _parameterizedMap = new();
     private readonly Type _defaultCommandType;
 
-    public TelegramCommandFactory(IServiceProvider serviceProvider)
+    public TelegramCommandFactory()
     {
         Type[] types;
         try
@@ -58,27 +58,58 @@ public class TelegramCommandFactory
                               : commandTypes[0];
     }
 
+
+    public ITelegramCommand? GetCommand<TCommand>(string? input, IServiceProvider scopedProvider) where TCommand : ITelegramCommand
+    {
+        var commandType = ResolveCommandType(input);
+
+        if (commandType == null || !typeof(TCommand).IsAssignableFrom(commandType))
+            return null;
+
+        return CreateCommandInstance(commandType, input, scopedProvider);
+    }
+
     public ITelegramCommand GetCommand(string? commandText, IServiceProvider scopedProvider)
     {
+        var commandType = ResolveCommandType(commandText) ?? _defaultCommandType;
+        return CreateCommandInstance(commandType, commandText, scopedProvider);
+    }
+
+    private Type? ResolveCommandType(string? commandText)
+    {
         var input = commandText?.Trim();
-        var targetType = _defaultCommandType;
+        if (string.IsNullOrEmpty(input)) return null;
+
+        if (_exactMap.TryGetValue(input, out var exactType))
+        {
+            return exactType;
+        }
+
+        foreach (var (regex, cmdType) in _parameterizedMap)
+        {
+            if (regex.IsMatch(input))
+            {
+                return cmdType;
+            }
+        }
+
+        return null;
+    }
+
+    private ITelegramCommand CreateCommandInstance(Type commandType, string? commandText, IServiceProvider scopedProvider)
+    {
+        var input = commandText?.Trim();
         var parameters = new Dictionary<string, string>();
 
         if (!string.IsNullOrEmpty(input))
         {
-            if (_exactMap.TryGetValue(input, out var exactType))
+            foreach (var (regex, cmdType) in _parameterizedMap)
             {
-                targetType = exactType;
-            }
-            else
-            {
-                foreach (var (regex, cmdType) in _parameterizedMap)
+                if (cmdType == commandType)
                 {
                     var match = regex.Match(input);
                     if (match.Success)
                     {
-                        targetType = cmdType;
-
                         foreach (string groupName in regex.GetGroupNames())
                         {
                             if (groupName != "0")
@@ -92,10 +123,12 @@ public class TelegramCommandFactory
             }
         }
 
-        var command = (ITelegramCommand)ActivatorUtilities.CreateInstance(scopedProvider, targetType);
+        var command = (ITelegramCommand)ActivatorUtilities.CreateInstance(scopedProvider, commandType);
 
         if (command is IRoutableCommand routableCommand && parameters.Count > 0)
+        {
             routableCommand.SetRouteParameters(parameters);
+        }
 
         return command;
     }

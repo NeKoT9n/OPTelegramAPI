@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bot.Types;
 using TelegramServiceAPI.Core.Services.Factory;
+using TelegramServiceAPI.Model.Abstraction.Commands;
 
 namespace TelegramServiceAPI.Core.Commands;
 
@@ -9,25 +10,25 @@ public class TelegramCommandExecutor(
     IServiceScopeFactory scopeFactory)
 {
     private readonly TelegramCommandFactory _commandFactory = commandFactory;
+    private readonly IServiceScopeFactory _scopeFactory = scopeFactory;
 
-    public async Task ExecuteAsync(
+    public async Task ExecuteTypedCommandAsync<TCommand>(
         string? commandText,
         Message? message,
         CallbackQuery? callbackQuery,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken) where TCommand : ITelegramCommand
     {
+        using var scope = _scopeFactory.CreateScope();
 
-        using var scope = scopeFactory.CreateScope();
+        var command = _commandFactory.GetCommand<TCommand>(commandText, scope.ServiceProvider);
 
-        var command = _commandFactory.GetCommand(commandText, scope.ServiceProvider);
-
-        if (command == null) 
+        if (command == null)
             return;
 
         await command.ExecuteAsync(message, callbackQuery, cancellationToken);
     }
 
-    public async Task ExecuteAsync(Update update, CancellationToken cancellationToken)
+    public async Task ExecuteTypedCommandAsync<TCommand>(Update update, CancellationToken cancellationToken) where TCommand : ITelegramCommand
     {
         string? routeInput = null;
         Message? message = null;
@@ -45,6 +46,6 @@ public class TelegramCommandExecutor(
             message = update.CallbackQuery.Message;
         }
 
-        await ExecuteAsync(routeInput, message, callbackQuery, cancellationToken);
+        await ExecuteTypedCommandAsync<TCommand>(routeInput, message, callbackQuery, cancellationToken);
     }
 }

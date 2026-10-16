@@ -19,7 +19,7 @@ public class GroupChatHandler(
 
         if (factory.TryGetHandler(chatId.ToString(), out var handler) && handler != null)
         {
-            await handler.HandleGroupMessageAsync(update.Message, cancellationToken);
+            await handler.HandleGroupMessageAsync(update,  cancellationToken);
         }
         else
         {

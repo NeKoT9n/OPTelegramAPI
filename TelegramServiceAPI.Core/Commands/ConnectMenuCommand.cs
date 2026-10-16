@@ -2,13 +2,13 @@
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using TelegramServiceAPI.Core.Commands.Attributes;
-using TelegramServiceAPI.Core.Services;
-using TelegramServiceAPI.Model.Abstraction;
+using TelegramServiceAPI.Core.Services.Factory;
+using TelegramServiceAPI.Model.Abstraction.Commands;
 
 namespace TelegramServiceAPI.Core.Commands;
 
 [TelegramRoute("/connect")]
-public class ConnectMenuCommand(ITelegramBotClient botClient) : ITelegramCommand
+public class ConnectMenuCommand(ITelegramBotClient botClient) : IPrivateChatCommand
 {
     private readonly ITelegramBotClient _botClient = botClient;
 
