@@ -9,43 +9,42 @@ using TelegramServiceAPI.Infrastructure;
 
 #nullable disable
 
-namespace TelegramServiceAPI.Infrastructure.Migrations
+namespace TelegramServiceAPI.Infrastructure.Migrations;
+
+[DbContext(typeof(TelegramDbContext))]
+[Migration("20261014095955_InitialMigration")]
+partial class InitialMigration
 {
-    [DbContext(typeof(TelegramDbContext))]
-    [Migration("20261014095955_InitialMigration")]
-    partial class InitialMigration
+    /// <inheritdoc />
+    protected override void BuildTargetModel(ModelBuilder modelBuilder)
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.13")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+        modelBuilder
+            .HasAnnotation("ProductVersion", "10.0.13")
+            .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+        NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("TelegramServiceAPI.Infrastructure.Entities.ConnectionEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+        modelBuilder.Entity("TelegramServiceAPI.Infrastructure.Entities.ConnectionEntity", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid");
 
-                    b.Property<string>("ChatId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                b.Property<string>("ChatId")
+                    .IsRequired()
+                    .HasColumnType("text");
 
-                    b.Property<bool>("IsConnected")
-                        .HasColumnType("boolean");
+                b.Property<bool>("IsConnected")
+                    .HasColumnType("boolean");
 
-                    b.Property<short>("Port")
-                        .HasColumnType("smallint");
+                b.Property<short>("Port")
+                    .HasColumnType("smallint");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Connections");
-                });
+                b.ToTable("Connections");
+            });
 #pragma warning restore 612, 618
-        }
     }
 }

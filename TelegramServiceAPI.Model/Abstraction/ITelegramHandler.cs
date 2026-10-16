@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TelegramServiceAPI.Model.Abstraction
+namespace TelegramServiceAPI.Model.Abstraction;
+
+public interface ITelegramHandler
 {
-    public interface ITelegramHandler
-    {
-    }
 }

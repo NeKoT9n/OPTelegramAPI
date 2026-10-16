@@ -1,8 +1,7 @@
-﻿namespace TelegramServiceAPI.DTO.Requests
+﻿namespace TelegramServiceAPI.DTO.Requests;
+
+public class SendFileRequest
 {
-    public class SendFileRequest
-    {
-        public IFormFile File { get; set; } = default!;
-        public string Description { get; set; } = string.Empty;
-    }
+    public IFormFile File { get; set; } = default!;
+    public string Description { get; set; } = string.Empty;
 }

@@ -2,13 +2,18 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Serilog;
-using Serilog.Events;
 using Telegram.Bot;
+using TelegramServiceAPI.Core.Commands;
 using TelegramServiceAPI.Core.Services;
 using TelegramServiceAPI.Core.Services.Commands;
+using TelegramServiceAPI.Core.Services.Factory;
+using TelegramServiceAPI.Core.Services.Handlers;
+using TelegramServiceAPI.Core.Services.Handlers.GroupChatHandlers;
 using TelegramServiceAPI.Infrastructure;
 using TelegramServiceAPI.Model.Abstraction;
+using TelegramServiceAPI.Model.Abstraction.Handlers;
 using TelegramServiceAPI.Options;
+using TelegramServiceAPI.Services;
 
 namespace TelegramServiceAPI.Extensions;
 
@@ -31,18 +36,36 @@ public static class AppExtensions
             return new TelegramBotClient(settings.BotToken);
         });
 
-        services.AddScoped<ITelegramFileSenderService, TelegramFileSenderService>();
         services.AddHostedService<TelegramListenerBackgroundService>();
+
+        services.AddScoped<ITelegramFileSenderService, TelegramFileSenderService>();
         services.AddScoped<ITelegramPrivateChatService, TelegramPrivateChatService>();
         services.AddScoped<ITelegramMessageReSenderService, TelegramMessageReSenderService>();
 
-        services.AddTransient<ITelegramCommand, MainMenuCommand>();
-        services.AddTransient<ITelegramCommand, ConnectMenuCommand>();
-        services.AddTransient<ITelegramCommand, DisconnectMenuCommand>();
-        services.AddTransient<ITelegramCommand, PortActionCommand>();
+        AddTelegramBotCommands(services);
 
-        services.AddTransient<TelegramCommandFactory>();
-        services.AddTransient<ITelegramPrivateChatService, TelegramPrivateChatService>();
+        services.AddScoped<TelegramBotUpdateHandler>();
+        services.AddScoped<IGroupChatHandler, CommitChatHandler>();
+
+        services.AddTransient<GroupChatHandlerFactory>();
+
+        services.AddTransient<ITelegramUpdateHandler, PrivateChatHandler>();
+        services.AddTransient<ITelegramUpdateHandler, GroupChatHandler>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddTelegramBotCommands(IServiceCollection services)
+    {
+        services.AddScoped<TelegramCommandExecutor>();
+
+        services.AddTransient<MainMenuCommand>();
+        services.AddTransient<ConnectMenuCommand>();
+        services.AddTransient<ConnectPortCommand>();
+        services.AddTransient<DisconnectMenuCommand>();
+        services.AddTransient<DisconnectPortCommand>();
+
+        services.AddSingleton<TelegramCommandFactory>();
 
         return services;
     }
@@ -69,4 +92,5 @@ public static class AppExtensions
 
         return app;
     }
+
 }

@@ -3,34 +3,33 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace TelegramServiceAPI.Infrastructure.Migrations
+namespace TelegramServiceAPI.Infrastructure.Migrations;
+
+/// <inheritdoc />
+public partial class InitialMigration : Migration
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.CreateTable(
-                name: "Connections",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    IsConnected = table.Column<bool>(type: "boolean", nullable: false),
-                    Port = table.Column<short>(type: "smallint", nullable: false),
-                    ChatId = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Connections", x => x.Id);
-                });
-        }
+        migrationBuilder.CreateTable(
+            name: "Connections",
+            columns: table => new
+            {
+                Id = table.Column<Guid>(type: "uuid", nullable: false),
+                IsConnected = table.Column<bool>(type: "boolean", nullable: false),
+                Port = table.Column<short>(type: "smallint", nullable: false),
+                ChatId = table.Column<string>(type: "text", nullable: false)
+            },
+            constraints: table =>
+            {
+                table.PrimaryKey("PK_Connections", x => x.Id);
+            });
+    }
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "Connections");
-        }
+    /// <inheritdoc />
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.DropTable(
+            name: "Connections");
     }
 }

@@ -1,15 +1,14 @@
-﻿namespace TelegramServiceAPI.Options
+﻿namespace TelegramServiceAPI.Options;
+
+public class TelegramSettings
 {
-    public class TelegramSettings
-    {
-        public const string SectionName = "TelegramSettings";
+    public const string SectionName = "TelegramSettings";
 
-        public string BotToken { get; set; } = string.Empty;
-        public string ChatId { get; set; } = string.Empty;
-    }
+    public string BotToken { get; set; } = string.Empty;
+    public string ChatId { get; set; } = string.Empty;
+}
 
-    public class ReSendSettings : TelegramSettings
-    {
-        public new const string SectionName = "ReSendSettings";
-    }
+public class ReSendSettings : TelegramSettings
+{
+    public new const string SectionName = "ReSendSettings";
 }

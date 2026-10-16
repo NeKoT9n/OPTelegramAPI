@@ -1,33 +1,31 @@
 ﻿using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
+using TelegramServiceAPI.Core.Commands.Attributes;
 using TelegramServiceAPI.Model.Abstraction;
 
-namespace TelegramServiceAPI.Core.Services.Commands
+namespace TelegramServiceAPI.Core.Services.Commands;
+
+[TelegramRoute("/start", "/menu")]
+public class MainMenuCommand(ITelegramBotClient botClient) : ITelegramCommand
 {
-    public class MainMenuCommand(ITelegramBotClient botClient) : ITelegramCommand
+    public async Task ExecuteAsync(Message? message, CallbackQuery? callbackQuery, CancellationToken cancellationToken)
     {
-        public string Key => "menu_main";
-        private readonly ITelegramBotClient _botClient = botClient;
+        var chatId = message?.Chat.Id ?? callbackQuery?.Message?.Chat.Id;
+        if (chatId == null)
+            return;
 
-        public async Task ExecuteAsync(Message? message, CallbackQuery? callbackQuery, CancellationToken cancellationToken)
+        var keyboard = TelegramKeyboardFactory.CreateMainMenuKeyboard();
+        var text = "🎛 **Панель управления подписками на коммиты**\n\nВыберите нужное действие:";
+
+        if (callbackQuery?.Message != null)
         {
-            var chatId = message?.Chat.Id.ToString() ?? callbackQuery?.Message?.Chat.Id.ToString();
-            var messageId = callbackQuery?.Message?.Id;
-            if (chatId == null) return;
-
-            var keyboard = TelegramKeyboardFactory.CreateMainMenuKeyboard();
-            string text = "🎛 **Панель управления подписками на коммиты**\n\nВыберите нужное действие:";
-
-            if (callbackQuery != null && messageId.HasValue)
-            {
-                await _botClient.AnswerCallbackQuery(callbackQuery.Id, cancellationToken: cancellationToken);
-                await _botClient.EditMessageText(chatId, messageId.Value, text, parseMode: ParseMode.Markdown, replyMarkup: keyboard, cancellationToken: cancellationToken);
-            }
-            else
-            {
-                await _botClient.SendMessage(chatId, text, parseMode: ParseMode.Markdown, replyMarkup: keyboard, cancellationToken: cancellationToken);
-            }
+            await botClient.AnswerCallbackQuery(callbackQuery.Id, cancellationToken: cancellationToken);
+            await botClient.EditMessageText(chatId, callbackQuery.Message.Id, text, parseMode: ParseMode.Markdown, replyMarkup: keyboard, cancellationToken: cancellationToken);
+        }
+        else
+        {
+            await botClient.SendMessage(chatId, text, parseMode: ParseMode.Markdown, replyMarkup: keyboard, cancellationToken: cancellationToken);
         }
     }
 }

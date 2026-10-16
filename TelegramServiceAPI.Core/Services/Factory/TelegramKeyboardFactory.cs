@@ -1,62 +1,50 @@
 ﻿using Telegram.Bot.Types.ReplyMarkups;
 
-namespace TelegramServiceAPI.Core.Services
+namespace TelegramServiceAPI.Core.Services;
+
+public static class TelegramKeyboardFactory
 {
-    public static class TelegramKeyboardFactory
+    public static InlineKeyboardMarkup CreateMainMenuKeyboard()
+        => new(
+        [
+            [
+                InlineKeyboardButton.WithCallbackData("🟢 Подключить", "/connect"),
+                InlineKeyboardButton.WithCallbackData("🔴 Отключить", "/disconnect"),
+            ]
+        ]);
+
+    public static InlineKeyboardMarkup CreateConnectPortsKeyboard() 
+        => new(
+        [
+            [
+                InlineKeyboardButton.WithCallbackData("1XXX", "/connect_1"),
+                InlineKeyboardButton.WithCallbackData("2XXX", "/connect_2"),
+            ],
+            [
+                InlineKeyboardButton.WithCallbackData("3XXX", "/connect_3"),
+                InlineKeyboardButton.WithCallbackData("4XXX", "/connect_4"),
+            ],
+            [
+                InlineKeyboardButton.WithCallbackData("🔙 Назад", "/menu")
+            ]
+        ]);
+
+    public static InlineKeyboardMarkup CreateBackToMainKeyboard()
+        => new(
+        [
+            [InlineKeyboardButton.WithCallbackData("🔙 В главное меню", "/menu")]
+        ]);
+
+    public static InlineKeyboardMarkup CreateDisconnectPortsKeyboard(List<short> activePorts)
     {
-        public static InlineKeyboardMarkup CreateMainMenuKeyboard()
-        {
-            return new InlineKeyboardMarkup(new[]
-            {
-                new[]
-                {
-                    InlineKeyboardButton.WithCallbackData("🟢 Подключить", "menu_connect"),
-                    InlineKeyboardButton.WithCallbackData("🔴 Отключить", "menu_disconnect"),
-                }
-            });
-        }
+        var buttonList = activePorts
+            .Select(port => InlineKeyboardButton.WithCallbackData($"{port}XXX", $"/disconnect_{port}"))
+            .ToList();
 
-        public static InlineKeyboardMarkup CreateConnectPortsKeyboard()
-        {
-            return new InlineKeyboardMarkup(new[]
-            {
-                new[]
-                {
-                    InlineKeyboardButton.WithCallbackData("1XXX", "conn_1"),
-                    InlineKeyboardButton.WithCallbackData("2XXX", "conn_2"),
-                },
-                new[]
-                {
-                    InlineKeyboardButton.WithCallbackData("3XXX", "conn_3"),
-                    InlineKeyboardButton.WithCallbackData("4XXX", "conn_4"),
-                },
-                new[]
-                {
-                    InlineKeyboardButton.WithCallbackData("🔙 Назад", "menu_main")
-                }
-            });
-        }
+        var rows = buttonList.Chunk(2).Select(chunk => chunk.ToArray()).ToList();
 
-        public static InlineKeyboardMarkup CreateDisconnectPortsKeyboard(List<short> activePorts)
-        {
-            var buttonList = activePorts
-                .Select(port => InlineKeyboardButton.WithCallbackData($"{port}XXX", $"disc_{port}"))
-                .ToList();
+        rows.Add([InlineKeyboardButton.WithCallbackData("🔙 Назад", "/menu")]);
 
-            var rows = buttonList.Chunk(2).Select(chunk => chunk.ToArray()).ToList();
-
-            // Добавляем кнопку возврата назад в главное меню
-            rows.Add(new[] { InlineKeyboardButton.WithCallbackData("🔙 Назад", "menu_main") });
-
-            return new InlineKeyboardMarkup(rows);
-        }
-
-        public static InlineKeyboardMarkup CreateBackToMainKeyboard()
-        {
-            return new InlineKeyboardMarkup(new[]
-            {
-                new[] { InlineKeyboardButton.WithCallbackData("🔙 В главное меню", "menu_main") }
-            });
-        }
+        return new InlineKeyboardMarkup(rows);
     }
 }
